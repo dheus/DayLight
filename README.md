@@ -1,43 +1,54 @@
-# Alfons Digital - Daylight Duration Tracker
+![DayLight Logo](https://raw.githubusercontent.com/dheus/DayLight/main/public/logo.png)
+
+## Alfons Digital - Daylight Duration Tracker
 
 A web application that visualizes daylight duration throughout the year for Finnish cities. This project was developed as a technical assignment during a job interview process.
 
-## Installation
+#### Installation
 
-### Setup
-
-composer install
+```bash
 npm install
-
+composer install
 cp .env.example .env
 php artisan key:generate
+```
 
-# Create PostgreSQL database
+#### Create PostgreSQL database
 
+```bash
 createdb daylight
+```
 
-# Run migrations
+#### Run migrations
 
+```bash
 php artisan migrate
+```
 
-# Create a seeder to populate the database, (cities.json file in config)
+#### Create a seeder to populate the database.
 
+(cities.json file in config)
+
+```bash
 php artisan make:seeder CitiesSeeder
+```
 
-## Running the Application
+### Running the Application
 
+```bash
 composer run dev
 open: http://127.0.0.1:8000
+```
 
 ## Tech Stack
 
-### Backend (Laravel)
+#### Backend (Laravel)
 
 - **Laravel 12.0**
 - **PostgreSQL**
 - **SunCalc PHP** - Astronomical calculations for sun/moon positions
 
-### Frontend (React)
+#### Frontend (React)
 
 - **React 19.1.1**
 - **React Router DOM 7.8.2**
@@ -47,10 +58,14 @@ open: http://127.0.0.1:8000
 - **Axios 1.11.0**
 - **Sass 1.92.0**
 
-## SunCalc Library
+### SunCalc Library
 
 This project uses a custom integration of the [SunCalc PHP library](https://github.com/gregseth/suncalc-php/tree/master) for accurate astronomical calculations.
 
+### Authors
+
+- [@dheus](https://github.com/dheus)
+
 ## License
 
-This project is open source and available under the [MIT License](LICENSE).
+[MIT](https://choosealicense.com/licenses/mit/)
