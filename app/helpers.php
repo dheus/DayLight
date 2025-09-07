@@ -3,6 +3,8 @@
 use App\Models\City;
 use Carbon\Carbon;
 
+require_once __DIR__ . '/Libraries/SunCalc.php';
+
 if (!function_exists('getPopularCities')) {
     function getPopularCities(int $limit = 20)
     {
