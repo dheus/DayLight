@@ -25,12 +25,25 @@ createdb daylight
 php artisan migrate
 ```
 
-##### Create a seeder to populate the database.
+##### Configure Database Connection
 
-##### _(cities.json file in config)_
+Update your `.env` file with your database credentials:
 
 ```bash
-php artisan make:seeder CitiesSeeder
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=daylight
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
+```
+
+##### Populate the database with cities data
+
+The application includes a `cities.json` file in the `config/` directory. Run the seeder to populate the database:
+
+```bash
+php artisan db:seed --class=CitySeeder
 ```
 
 ##### Running the Application
