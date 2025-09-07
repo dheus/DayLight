@@ -66,6 +66,6 @@ This project uses a custom integration of the [SunCalc PHP library](https://gith
 
 - [@dheus](https://github.com/dheus)
 
-## License
+### License
 
 [MIT](https://choosealicense.com/licenses/mit/)
