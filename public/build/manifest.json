@@ -1,0 +1,26 @@
+{
+  "resources/assets/img/clouds.png": {
+    "file": "assets/clouds-DefqAyd9.png",
+    "src": "resources/assets/img/clouds.png"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-CEIvR3Qr.css",
+    "src": "resources/css/app.css",
+    "isEntry": true,
+    "names": [
+      "app.css"
+    ]
+  },
+  "resources/js/app.jsx": {
+    "file": "assets/app-DIUkXRi4.js",
+    "name": "app",
+    "src": "resources/js/app.jsx",
+    "isEntry": true,
+    "css": [
+      "assets/app-s8ayTbcm.css"
+    ],
+    "assets": [
+      "assets/clouds-DefqAyd9.png"
+    ]
+  }
+}

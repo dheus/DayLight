@@ -1,0 +1,240 @@
+.animated-sky {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.sun-wrapper {
+  min-width: 80px;
+  min-height: 80px;
+  position: relative;
+  order: 2;
+}
+
+// Sun Animation Styles
+.sun {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: white;
+  opacity: 0.9;
+  box-shadow: 0px 0px 40px 15px white;
+  transform: translateY(-100vh);
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  &.visible {
+    transform: translateY(0);
+    animation: sunGlow 2s ease-out forwards;
+  }
+}
+
+@keyframes sunGlow {
+  0% {
+    box-shadow: 0px 0px 40px 15px white;
+    opacity: 0.9;
+  }
+  50% {
+    box-shadow: 0px 0px 60px 25px white,
+      0px 0px 100px 40px rgba(255, 255, 255, 0.6);
+    opacity: 1;
+  }
+  100% {
+    box-shadow: 0px 0px 40px 15px white;
+    opacity: 0.9;
+  }
+}
+
+.ray_box {
+  position: absolute;
+  margin: auto;
+  top: 0px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 70px;
+  -webkit-animation: ray_anim 120s linear infinite;
+  animation: ray_anim 120s linear infinite;
+}
+
+.ray {
+  background: -webkit-linear-gradient(
+    top,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background: linear-gradient(
+    top,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  margin-left: 10px;
+  border-radius: 80% 80% 0 0;
+  position: absolute;
+  opacity: 0.1;
+}
+
+.ray1 {
+  height: 170px;
+  width: 30px;
+  -webkit-transform: rotate(180deg);
+  top: -175px;
+  left: 15px;
+}
+.ray2 {
+  height: 100px;
+  width: 8px;
+  -webkit-transform: rotate(220deg);
+  top: -90px;
+  left: 75px;
+}
+.ray3 {
+  height: 170px;
+  width: 50px;
+  -webkit-transform: rotate(250deg);
+  top: -80px;
+  left: 100px;
+}
+.ray4 {
+  height: 120px;
+  width: 14px;
+  -webkit-transform: rotate(305deg);
+  top: 30px;
+  left: 100px;
+}
+.ray5 {
+  height: 140px;
+  width: 30px;
+  -webkit-transform: rotate(-15deg);
+  top: 60px;
+  left: 40px;
+}
+.ray6 {
+  height: 90px;
+  width: 50px;
+  -webkit-transform: rotate(30deg);
+  top: 60px;
+  left: -40px;
+}
+.ray7 {
+  height: 180px;
+  width: 10px;
+  -webkit-transform: rotate(70deg);
+  top: -35px;
+  left: -40px;
+}
+.ray8 {
+  height: 120px;
+  width: 30px;
+  -webkit-transform: rotate(100deg);
+  top: -45px;
+  left: -90px;
+}
+.ray9 {
+  height: 80px;
+  width: 10px;
+  -webkit-transform: rotate(120deg);
+  top: -65px;
+  left: -60px;
+}
+.ray10 {
+  height: 190px;
+  width: 23px;
+  -webkit-transform: rotate(150deg);
+  top: -185px;
+  left: -60px;
+}
+
+@-webkit-keyframes ray_anim {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+// Clouds Animation Styles
+.cloud-container {
+  position: relative;
+  z-index: 10;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(0);
+  &.left,
+  &.right {
+    opacity: 0;
+    &.visible {
+      transform: translateX(0);
+      opacity: 0.5;
+    }
+  }
+  &.left {
+    transform: translateX(-300px);
+    order: 1;
+  }
+
+  &.right {
+    transform: translateX(300px);
+    order: 3;
+  }
+}
+
+.cloud {
+  width: 200px;
+  height: 60px;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 1);
+
+  border-radius: 200px;
+  -moz-border-radius: 200px;
+  -webkit-border-radius: 200px;
+
+  position: relative;
+  animation: float 4s ease-in-out infinite;
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    background: rgba(255, 255, 255, 1);
+    width: 100px;
+    height: 80px;
+    position: absolute;
+    top: -15px;
+    left: 10px;
+
+    border-radius: 100px;
+    -moz-border-radius: 100px;
+    -webkit-border-radius: 100px;
+
+    -webkit-transform: rotate(30deg);
+    transform: rotate(30deg);
+    -moz-transform: rotate(30deg);
+  }
+  &:after {
+    width: 120px;
+    height: 120px;
+    top: -55px;
+    left: auto;
+    right: 15px;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}

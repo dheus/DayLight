@@ -1,0 +1,335 @@
+@mixin glass-background($opacity: 0.15) {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, $opacity) 0%,
+    rgba(135, 206, 235, $opacity * 0.7) 50%,
+    rgba(74, 144, 226, $opacity * 0.5) 100%
+  );
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+}
+
+.keyboard-shortcuts-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.3s ease-out;
+
+  &.closing {
+    animation: fadeOut 0.3s ease-in forwards;
+  }
+
+  &__backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    cursor: pointer;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    max-width: 400px;
+    width: 100%;
+    @include glass-background(0.2);
+    border: 2px solid rgba(135, 206, 235, 0.4);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
+      0 8px 25px rgba(74, 144, 226, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    animation: slideInUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
+
+    // Subtle glow effect
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        transparent 50%,
+        rgba(135, 206, 235, 0.1) 100%
+      );
+      border-radius: 18px;
+      pointer-events: none;
+    }
+
+    // Animated border glow
+    &::after {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(
+        45deg,
+        rgba(135, 206, 235, 0.6),
+        rgba(74, 144, 226, 0.4),
+        rgba(135, 206, 235, 0.6)
+      );
+      background-size: 200% 200%;
+      border-radius: 22px;
+      z-index: -1;
+      animation: borderGlow 3s ease-in-out infinite;
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid rgba(135, 206, 235, 0.2);
+    position: relative;
+  }
+
+  &__title {
+    font-family: "Silkscreen", sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fffee9;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__close {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 24px;
+    font-weight: 300;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+
+    &:hover {
+      color: #fffee9;
+      background: rgba(255, 255, 255, 0.1);
+      transform: scale(1.1);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+
+  &__shortcuts {
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(135, 206, 235, 0.2);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+
+    // Subtle hover effect
+    &:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(135, 206, 235, 0.3);
+      transform: translateX(4px);
+    }
+
+    // Shimmer effect
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+      );
+      transition: left 0.6s ease;
+    }
+
+    &:hover::before {
+      left: 100%;
+    }
+  }
+
+  &__key {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 32px;
+    padding: 0 12px;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(135, 206, 235, 0.15) 100%
+    );
+    border: 1px solid rgba(135, 206, 235, 0.4);
+    border-radius: 8px;
+    font-family: "Kode Mono", monospace;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fffee9;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+
+    // Key press effect
+    &:hover {
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.25) 0%,
+        rgba(135, 206, 235, 0.2) 100%
+      );
+      border-color: rgba(135, 206, 235, 0.5);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+      transform: translateY(-1px) scale(1.05);
+    }
+
+    &:active {
+      transform: translateY(0) scale(1.02);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &__text {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 400;
+    line-height: 1.4;
+    flex: 1;
+  }
+
+  @media (max-width: 480px) {
+    padding: 16px;
+
+    &__content {
+      max-width: none;
+      margin: 0;
+    }
+
+    &__header {
+      padding: 16px 20px 12px;
+    }
+
+    &__title {
+      font-size: 16px;
+    }
+
+    &__shortcuts {
+      padding: 16px 20px;
+      gap: 12px;
+    }
+
+    &__item {
+      padding: 10px 12px;
+      gap: 12px;
+    }
+
+    &__key {
+      min-width: 36px;
+      height: 28px;
+      font-size: 11px;
+      padding: 0 10px;
+    }
+
+    &__text {
+      font-size: 13px;
+    }
+
+    &__footer {
+      padding: 12px 20px 16px;
+    }
+
+    &__hint {
+      font-size: 11px;
+    }
+  }
+}
+
+// =============================================================================
+// ANIMATIONS
+// =============================================================================
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes borderGlow {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
