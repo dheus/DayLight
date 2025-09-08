@@ -59,7 +59,7 @@ open: http://127.0.0.1:8000
 
 - Laravel 12.0
 - PostgreSQL
-- SunCalc PHP - Astronomical calculations for sun/moon positions
+- [SunCalc PHP library](https://github.com/gregseth/suncalc-php/tree/master) - Astronomical calculations for sun/moon positions
 
 #### Frontend
 
@@ -70,10 +70,6 @@ open: http://127.0.0.1:8000
 - Zustand 5.0.8
 - Axios 1.11.0
 - Sass 1.92.0
-
-#### SunCalc Library
-
-This project uses a custom integration of the [SunCalc PHP library](https://github.com/gregseth/suncalc-php/tree/master) for accurate astronomical calculations.
 
 #### Authors
 
