@@ -6,11 +6,6 @@ use Illuminate\Http\JsonResponse;
 
 class DaylightController extends Controller
 {
-    public function getPopularCities(): JsonResponse
-    {
-        return response()->json(getPopularCities());
-    }
-
     public function searchCities(): JsonResponse
     {
         $query = request()->get('q') ?? '';
